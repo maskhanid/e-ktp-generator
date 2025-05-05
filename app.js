@@ -5,6 +5,18 @@ const fs = require('fs');
 const Jimp = require('jimp');
 const { createCanvas, registerFont, loadImage } = require('canvas');
 
+// Pastikan direktori uploads dan images ada
+const uploadsDir = path.join(__dirname, 'public/uploads');
+const imagesDir = path.join(__dirname, 'public/images');
+if (!fs.existsSync(uploadsDir)) {
+  fs.mkdirSync(uploadsDir, { recursive: true });
+  console.log('Direktori uploads dibuat:', uploadsDir);
+}
+if (!fs.existsSync(imagesDir)) {
+  fs.mkdirSync(imagesDir, { recursive: true });
+  console.log('Direktori images dibuat:', imagesDir);
+}
+
 // Register semua font dengan path absolut
 try {
   // Font OCR untuk NIK
@@ -263,6 +275,11 @@ async function generateEKTP(data) {
     throw error;
   }
 }
+
+// Tambahkan rute untuk menangani error 404
+app.use((req, res) => {
+  res.status(404).render('error', { message: 'Halaman tidak ditemukan' });
+});
 
 // Start server
 app.listen(port, () => {
