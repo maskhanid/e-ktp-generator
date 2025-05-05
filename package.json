@@ -4,12 +4,12 @@
   "description": "generate your fake e-ktp",
   "main": "app.js",
   "engines": {
-    "node": ">=14.0.0"
+    "node": "18.x"
   },
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js",
-    "build": "npm install",
+    "build": "mkdir -p public/uploads public/images && npm install",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [

@@ -33,8 +33,15 @@
       "dest": "/public/uploads/$1"
     },
     {
+      "src": "/api/(.*)",
+      "dest": "/app.js"
+    },
+    {
       "src": "/(.*)",
       "dest": "/app.js"
     }
-  ]
+  ],
+  "env": {
+    "VERCEL": "true"
+  }
 } 
